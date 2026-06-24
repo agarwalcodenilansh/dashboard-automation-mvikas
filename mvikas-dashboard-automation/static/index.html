@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVIKAS Logistics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+  <header class="dash-header">
+    <div class="header-container">
+      <img src="logo.png" alt="MVIKAS Logo" class="brand-logo">
+      <div class="header-info">
+        <span class="badge-date">As of May 31, 2026</span>
+        <span class="badge-elapsed">31 / 31 days elapsed · May 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash">
+
+    <!-- KPI Cards -->
+    <section class="metric-grid" aria-label="Key Performance Indicators">
+      <div class="metric">
+        <div class="metric-label">Total Open Shipments</div>
+        <div class="metric-val" id="kpi-open">—</div>
+        <div class="metric-sub">Active in pipeline</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Daily Average Tonnage</div>
+        <div class="metric-val" id="kpi-daily-avg">—</div>
+        <div class="metric-sub">Month Tonnage ÷ Days in Month</div>
+      </div>
+      <div class="metric danger">
+        <div class="metric-label">EDD Crossed (Delayed)</div>
+        <div class="metric-val" id="kpi-edd">—</div>
+        <div class="metric-sub" id="kpi-edd-pct">of open shipments</div>
+      </div>
+      <div class="metric warning">
+        <div class="metric-label">Due Tomorrow</div>
+        <div class="metric-val" id="kpi-due">—</div>
+        <div class="metric-sub">At risk if not dispatched</div>
+      </div>
+      <div class="metric success">
+        <div class="metric-label">Booked Yesterday</div>
+        <div class="metric-val" id="kpi-booked">—</div>
+        <div class="metric-sub">May 30, 2026</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Daily Tonnage (Today)</div>
+        <div class="metric-val" id="kpi-daily-ton">—</div>
+        <div class="metric-sub">All clients combined</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Month Tonnage Till Date</div>
+        <div class="metric-val" id="kpi-month-ton">—</div>
+        <div class="metric-sub">May 2026 cumulative</div>
+      </div>
+    </section>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar" role="tablist">
+      <button class="tab active" role="tab" id="tab-btn-classify" aria-selected="true" aria-controls="tab-classify" onclick="switchTab('classify',this)">Shipment Classification</button>
+      <button class="tab" role="tab" id="tab-btn-tonnage" aria-selected="false" aria-controls="tab-tonnage" onclick="switchTab('tonnage',this)">Tonnage % by Client</button>
+      <button class="tab" role="tab" id="tab-btn-daily" aria-selected="false" aria-controls="tab-daily" onclick="switchTab('daily',this)">Daily Avg & Completion</button>
+      <button class="tab" role="tab" id="tab-btn-kam" aria-selected="false" aria-controls="tab-kam" onclick="switchTab('kam',this)">KAM Performance</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 1 — SHIPMENT CLASSIFICATION
+    ══════════════════════════════════════════════════════ -->
+    <div id="tab-classify" class="panel active" role="tabpanel">
+
+      <!-- Row 1: Donut + EDD Table -->
+      <div class="row2">
+        <div class="card">
+          <div class="section-title">Shipment status overview</div>
+          <div class="legend">
+            <span><span class="legend-dot" style="background:#ef4444"></span>EDD Crossed</span>
+            <span><span class="legend-dot" style="background:#3b82f6"></span>Open (in transit)</span>
+            <span><span class="legend-dot" style="background:#f59e0b"></span>Due Tomorrow</span>
+            <span><span class="legend-dot" style="background:#10b981"></span>Booked Yesterday</span>
+          </div>
+          <div class="chart-wrap" style="height:260px">
+            <canvas id="statusDonut"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">EDD crossed — by customer (all)</div>
+          <div class="chart-wrap" style="height:340px">
+            <canvas id="eddBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Due Tomorrow + Booked Yesterday -->
+      <div class="row2">
+        <div class="card">
+          <div class="section-title">Due tomorrow — orders by customer</div>
+          <div class="legend">
+            <span><span class="legend-dot" style="background:#f59e0b"></span>Orders due June 1</span>
+          </div>
+          <div class="chart-wrap" style="height:260px">
+            <canvas id="dueTmrChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Booked yesterday (May 30) — by customer</div>
+          <div class="legend">
+            <span><span class="legend-dot" style="background:#10b981"></span>Shipments booked</span>
+          </div>
+          <div class="chart-wrap" style="height:260px">
+            <canvas id="bookedChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open shipments table -->
+      <div class="card">
+        <div class="section-title">Open shipments — all customers</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr><th>#</th><th>Customer</th><th>Open Shipments</th><th>EDD Crossed</th><th>Due Tomorrow</th><th>% Delayed</th><th>Risk</th></tr>
+            </thead>
+            <tbody id="open-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 2 — TONNAGE % BY CLIENT
+    ══════════════════════════════════════════════════════ -->
+    <div id="tab-tonnage" class="panel" role="tabpanel">
+      <div class="card">
+        <div class="section-title">Tonnage achieved vs monthly target — % completion (all clients with targets)</div>
+        <div id="tonnage-bars"></div>
+      </div>
+      <div class="row2">
+        <div class="card">
+          <div class="section-title">Monthly target distribution (top 8)</div>
+          <div class="chart-wrap" style="height:360px">
+            <canvas id="targetChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Achieved vs target comparison (top 8)</div>
+          <div class="legend">
+            <span><span class="legend-dot" style="background:#10b981"></span>Achieved</span>
+            <span><span class="legend-dot" style="background:#475569"></span>Target</span>
+          </div>
+          <div class="chart-wrap" style="height:360px">
+            <canvas id="achChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 3 — DAILY AVG & COMPLETION
+    ══════════════════════════════════════════════════════ -->
+    <div id="tab-daily" class="panel" role="tabpanel">
+      <div class="card">
+        <div class="section-title">Per-client daily average & days to complete remaining target</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Client</th><th>KAM</th><th>Target (kg)</th><th>Achieved (kg)</th>
+                <th>% Done</th><th>Active Days</th><th>Avg kg/Day</th><th>Remaining (kg)</th><th>Days to Finish*</th>
+              </tr>
+            </thead>
+            <tbody id="daily-table-body"></tbody>
+          </table>
+        </div>
+        <p class="footnote">* Extrapolated from current avg kg/active day. Remaining days in May: 1 (May 31). Days exceeding 1 means target cannot be met in May.</p>
+      </div>
+      <div class="row2">
+        <div class="card">
+          <div class="section-title">Avg kg dispatched per active day (top 10)</div>
+          <div class="legend"><span><span class="legend-dot" style="background:#6366f1"></span>Avg kg/day</span></div>
+          <div class="chart-wrap" style="height:360px">
+            <canvas id="avgDayChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Days needed to complete remaining target</div>
+          <div class="legend">
+            <span><span class="legend-dot" style="background:#ef4444"></span>&gt;10 days needed</span>
+            <span><span class="legend-dot" style="background:#f59e0b"></span>4–10 days</span>
+            <span><span class="legend-dot" style="background:#10b981"></span>≤3 days / done</span>
+          </div>
+          <div class="chart-wrap" style="height:360px">
+            <canvas id="daysChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 4 — KAM PERFORMANCE
+    ══════════════════════════════════════════════════════ -->
+    <div id="tab-kam" class="panel" role="tabpanel">
+      <div class="row2">
+        <div class="card">
+          <div class="section-title">KAM-wise tonnage share (achieved)</div>
+          <div class="chart-wrap" style="height:300px">
+            <canvas id="kamDonut"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">KAM performance summary</div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>KAM Name</th><th>Clients</th><th>Total Target</th><th>Achieved</th><th>% Done</th><th>Progress</th></tr></thead>
+              <tbody id="kam-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

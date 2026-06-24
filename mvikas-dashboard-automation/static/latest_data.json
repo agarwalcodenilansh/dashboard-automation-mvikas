@@ -1,0 +1,297 @@
+{
+  "generatedAt": "2026-06-24T17:15:43",
+  "sourceFile": "tmpacta4wuq.xlsx",
+  "reportDate": "2026-06-22",
+  "bookedDate": "2026-06-21",
+  "dueDate": "2026-06-23",
+  "dailyTonnageDate": "2026-06-21",
+  "monthName": "June",
+  "monthYear": "June 2026",
+  "year": 2026,
+  "month": 6,
+  "daysInMonth": 30,
+  "activeDaysElapsed": 23,
+  "clients": [
+    {
+      "name": "Carrier Refrigeration",
+      "person": "Sangeet Dhasmana",
+      "target": 315000.0,
+      "achieved": 112061.76,
+      "activeDays": 23
+    },
+    {
+      "name": "Bombax",
+      "person": "Chirag Kumar",
+      "target": 130812.0,
+      "achieved": 73641.59,
+      "activeDays": 23
+    },
+    {
+      "name": "Carrier CTD",
+      "person": "Deepak Sharma",
+      "target": 52221.0,
+      "achieved": 16645.07,
+      "activeDays": 23
+    },
+    {
+      "name": "Haier CCR",
+      "person": "Shiva",
+      "target": 41726.0,
+      "achieved": 11958.01,
+      "activeDays": 23
+    },
+    {
+      "name": "Kumar Services",
+      "person": "Deepak Sharma",
+      "target": 13995.0,
+      "achieved": 11393.8,
+      "activeDays": 23
+    },
+    {
+      "name": "Loom Solar Pvt Ltd",
+      "person": "Deepak Sharma",
+      "target": 29505.0,
+      "achieved": 7840.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Cosmos Pumps Pvt Ltd",
+      "person": "Shiva",
+      "target": 19027.0,
+      "achieved": 5698.48,
+      "activeDays": 23
+    },
+    {
+      "name": "Sukuga Technologies Pvt Ltd",
+      "person": "Shiva",
+      "target": 21318.0,
+      "achieved": 5000.46,
+      "activeDays": 23
+    },
+    {
+      "name": "Oneiric Appliances Pvt Ltd",
+      "person": "Deepak Sharma",
+      "target": 6577.0,
+      "achieved": 2285.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Mitras Technocrafts Pvt Ltd-HR",
+      "person": "Shiva",
+      "target": 18040.0,
+      "achieved": 1111.05,
+      "activeDays": 23
+    },
+    {
+      "name": "Medical Science",
+      "person": "Chirag Kumar",
+      "target": 4854.0,
+      "achieved": 977.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Frick",
+      "person": "Shiva",
+      "target": 2840.0,
+      "achieved": 585.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Vaidrishi Laboratories Pvt Ltd",
+      "person": "Chirag Kumar",
+      "target": 3970.0,
+      "achieved": 579.79,
+      "activeDays": 23
+    },
+    {
+      "name": "Paramount Surgimed Ltd",
+      "person": "Shiva",
+      "target": 17990.83,
+      "achieved": 400.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Indu Sports",
+      "person": "Chirag Kumar",
+      "target": 772.0,
+      "achieved": 298.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Aurinko Healthcare Pvt Ltd",
+      "person": "Chirag Kumar",
+      "target": 1059.0,
+      "achieved": 55.0,
+      "activeDays": 23
+    },
+    {
+      "name": "Edusoft Healthcare Ltd",
+      "person": "Deepak Sharma",
+      "target": 818.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "Global Impex",
+      "person": "Anjali",
+      "target": 772.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "GCPA",
+      "person": "Shiva",
+      "target": 0.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "Pangea",
+      "person": "Deepak Sharma",
+      "target": 0.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "RSR",
+      "person": "Deepak Sharma",
+      "target": 0.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "Epson",
+      "person": "Deepak Sharma",
+      "target": 0.0,
+      "achieved": 0,
+      "activeDays": 23
+    },
+    {
+      "name": "KRF",
+      "person": "Not Alloted",
+      "target": 0.0,
+      "achieved": 0,
+      "activeDays": 23
+    }
+  ],
+  "eddData": [
+    {
+      "name": "Bombax",
+      "count": 104
+    },
+    {
+      "name": "Carrier Refrigeration",
+      "count": 32
+    },
+    {
+      "name": "Kumar Services",
+      "count": 5
+    },
+    {
+      "name": "Sukuga Technologies Pvt Ltd",
+      "count": 3
+    },
+    {
+      "name": "Oneiric Appliances Pvt Ltd",
+      "count": 3
+    },
+    {
+      "name": "Mitras Technocrafts Pvt Ltd-HR",
+      "count": 2
+    },
+    {
+      "name": "Haier CCR",
+      "count": 2
+    },
+    {
+      "name": "Carrier CTD",
+      "count": 1
+    }
+  ],
+  "openData": [
+    {
+      "name": "Bombax",
+      "count": 306
+    },
+    {
+      "name": "Carrier Refrigeration",
+      "count": 92
+    },
+    {
+      "name": "Sukuga Technologies Pvt Ltd",
+      "count": 14
+    },
+    {
+      "name": "Medical Science",
+      "count": 11
+    },
+    {
+      "name": "Kumar Services",
+      "count": 10
+    },
+    {
+      "name": "Carrier CTD",
+      "count": 5
+    },
+    {
+      "name": "Cosmos Pumps Pvt Ltd",
+      "count": 4
+    },
+    {
+      "name": "Mitras Technocrafts Pvt Ltd-HR",
+      "count": 3
+    },
+    {
+      "name": "Oneiric Appliances Pvt Ltd",
+      "count": 3
+    },
+    {
+      "name": "Loom Solar Pvt Ltd",
+      "count": 2
+    },
+    {
+      "name": "Haier CCR",
+      "count": 2
+    }
+  ],
+  "dueData": [
+    {
+      "name": "Bombax",
+      "count": 44
+    },
+    {
+      "name": "Carrier Refrigeration",
+      "count": 6
+    },
+    {
+      "name": "Medical Science",
+      "count": 5
+    },
+    {
+      "name": "Kumar Services",
+      "count": 3
+    },
+    {
+      "name": "Sukuga Technologies Pvt Ltd",
+      "count": 1
+    },
+    {
+      "name": "Cosmos Pumps Pvt Ltd",
+      "count": 1
+    },
+    {
+      "name": "Loom Solar Pvt Ltd",
+      "count": 1
+    },
+    {
+      "name": "Carrier CTD",
+      "count": 1
+    },
+    {
+      "name": "Mitras Technocrafts Pvt Ltd-HR",
+      "count": 1
+    }
+  ],
+  "bookedData": [],
+  "dailyTonnageData": []
+}
